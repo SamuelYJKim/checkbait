@@ -1,12 +1,11 @@
-from flask import Flask
-from flask import request
+from flask import Flask, request
 from classify import make_prediction
 from get_article_info import get_title, get_keywords, summarize
 import json
 import time
-from multiprocessing import Process, Queue, Value
+from multiprocessing import Process, Queue
 from urllib.parse import unquote
-app = Flask(__name__)
+app = Flask(name)
 
 
 @app.route('/clickbait/')
@@ -24,7 +23,7 @@ def isClickbait():
     p1.join()
     p2.join()
     p3.join()
-    res = []
+    res = [title]
     for i in range(3):
         val = queue.get()
         if i == 0:
@@ -32,4 +31,3 @@ def isClickbait():
         res.append(val)
     print("--- %s seconds ---" % (time.time() - start_time))
     return json.dumps(res)
-
