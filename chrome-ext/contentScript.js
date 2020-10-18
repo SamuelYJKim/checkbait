@@ -30,6 +30,8 @@ if (isClickbait === 0) {
   isClickbaitDOM.innerHTML = "Clickbait";
 }
 
+var brk = document.createElement("BR")
+
 var summaryDOM = document.createElement("p");
 summaryDOM.innerHTML = summary;
 
@@ -38,7 +40,7 @@ keywordsDOM.innerHTML = keywords;
 
 bubbleDOM.appendChild(isClickbaitDOM);
 bubbleDOM.appendChild(titleDOM);
-bubbleDOM.appendChild(document.createElement("br"))
+bubbleDOM.appendChild(brk)
 bubbleDOM.appendChild(summaryDOM);
 bubbleDOM.appendChild(keywordsDOM);
 
