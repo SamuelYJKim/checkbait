@@ -1,4 +1,5 @@
 from flask import Flask, request
+from flask_cors import CORS
 from classify import make_prediction
 from get_article_info import get_title, get_keywords, summarize
 import json
@@ -6,7 +7,7 @@ import time
 from multiprocessing import Process, Queue
 from urllib.parse import unquote
 app = Flask(__name__)
-
+CORS(app, resources={r"/*": {"origins": "*"}})
 
 @app.route('/clickbait/')
 def isClickbait():

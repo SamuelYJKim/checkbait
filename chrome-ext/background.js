@@ -15,59 +15,26 @@ chrome.runtime.onInstalled.addListener(function () {
   });
 
   function call_api(url, tab) {
-    chrome.tabs.query({active: true, currentWindow: true}, function() {
-      chrome.tabs.executeScript(
-        tab.id,
-        {file: 'contentScript.js'});
-      // chrome.tabs.executeScript(tab.id, {
-      //       code: 'var response = ' + response
-      //   }, function() {
-      //       chrome.tabs.executeScript(tab.id, {file: 'content.js'});
-      //   });
+    requestUrl = "http://localhost:5000/clickbait/?url=" + url;
+    fetch(requestUrl, {
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    }).then((response) => {
+      if (response.ok) {
+        response.json().then((data) => {
+          console.log(data);
+          chrome.tabs.executeScript(
+            tab.id,
+            {
+              code: "var response = " + JSON.stringify(data),
+            },
+            function () {
+              chrome.tabs.executeScript(tab.id, { file: "contentScript.js" });
+            }
+          );
+        });
+      }
     });
-      // console.log("tab", tab)
-      // chrome.tabs.sendMessage(tab.id, {message: "open"}, function(response) {
-      //   console.log(response.farewell);
-      // });
-  };
-
-    // chrome.windows.create({ url: "popup.html", type: "popup" }, function (
-    //   window
-    // ) {});
-    // requestUrl = "localhost:5000/" + url;
-    // fetch(requestUrl, {
-    //   headers: {
-    //     "Access-Control-Allow-Origin": "*",
-    //   },
-    // })
-    //   .then((response) => {
-              // chrome.tabs.executeScript(tab.id, {
-      //       code: 'var response = ' + response
-      //   }, function() {
-      //       chrome.tabs.executeScript(tab.id, {file: 'content.js'});
-      //   });
-    //   })
-
-  
+  }
 });
-
-
-    // data = [
-    //   0,
-    //   "(CNN) Ten states reported their highest single-day tallies of new Covid-19 infections Friday, and the country reported its highest one-day total since July, as experts say a dangerous fall surge of coronavirus infections is well underway.\n'We are in a new wave of rising positivity in Covid-19 cases' Experts say Americans can help get the virus under control by heeding guidelines touted by officials for months: avoiding crowded settings, keeping a distance, keeping small gatherings outdoors, and wearing a mask.\nHours before the rally, health officials reported 1,791 new Covid-19 cases in a day.",
-    //   [
-    //     "vaccine",
-    //     "harrowing",
-    //     "states",
-    //     "rally",
-    //     "coronavirus",
-    //     "cases",
-    //     "number",
-    //     "covid19",
-    //     "highest",
-    //     "reported",
-    //     "virus",
-    //     "officials",
-    //     "health",
-    //   ],
-    // ];
