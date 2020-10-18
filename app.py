@@ -5,7 +5,7 @@ import json
 import time
 from multiprocessing import Process, Queue
 from urllib.parse import unquote
-app = Flask(name)
+app = Flask(__name__)
 
 
 @app.route('/clickbait/')
