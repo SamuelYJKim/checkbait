@@ -16,3 +16,4 @@ six==1.15.0
 sklearn==0.0
 toml==0.10.1
 wrapt==1.12.1
+nltk==3.5
