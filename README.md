@@ -8,3 +8,6 @@ Nitesh Chetry
 Joon Kim
 Samuel Kim
 Brian Tran
+
+Credits to Aman Anand on Kaggle for Naives Bayes Clickbait Classifier
+
