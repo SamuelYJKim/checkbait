@@ -1,5 +1,5 @@
 # checkbait
-Chrome extension to detect if an article is clickbait
+Chrome extension to detect if an article is clickbait.
 
 DubHacks 2020
 
